@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossController : MonoBehaviour, IDamageable
+public class BossController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,11 +14,5 @@ public class BossController : MonoBehaviour, IDamageable
         
     }
 
-    public void TakeDamage()
-    {
-        Debug.Log("Life boss reduced");
-    }
-    
-
-    public bool IsDead { get; set; }
+  
 }
