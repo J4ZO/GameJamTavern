@@ -35,12 +35,15 @@ public class ShootingSystem : MonoBehaviour
     
 
 
-    public void CreateBullet(Transform bulletPosition)
+    public void CreateBullet(Transform bulletPosition,  Vector2 speed)
     {
         if (_bullets.TrueForAll(bullet => bullet.gameObject.activeSelf) || _bullets.Count == 0)
         {
             Debug.Log("Bullet Full or Created first time");
-            Instantiate(bulletPrefab, bulletPosition.position, Quaternion.identity);
+            GameObject newBullet = Instantiate(bulletPrefab, bulletPosition.position, Quaternion.identity);
+            Bullet bullet = newBullet.GetComponent<Bullet>();
+            
+            bullet.SetSpeedDirection(speed);
         }
         else
         {

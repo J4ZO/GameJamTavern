@@ -3,7 +3,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     public bool IsDead { get; set; }
-
+    
+    [Header("Variables")]
     [SerializeField] private float health = 6f;
     [SerializeField] private float damageReceived = 2f;
     
@@ -22,8 +23,6 @@ public class Enemy : MonoBehaviour, IDamageable
         _rb.MovePosition(_rb.position + speedDirection * Time.fixedDeltaTime);
     }
     
-    
-
     public void TakeDamage()
     {
         health -= damageReceived;
@@ -34,5 +33,9 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
+    public void ShootEnemy()
+    {
+        
+    }
    
 }

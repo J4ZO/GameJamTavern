@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour
     
     [Header("Variables")]
     [SerializeField] float moveSpeed;
+    [SerializeField] private float speedBulletX = 30f;
 
     [Header("Actions")] 
     [SerializeField] private InputActionReference  moveAction;
     [SerializeField] private InputActionReference  shootAction;
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         if (shootAction.action.WasPressedThisFrame())
         {
-            ShootingSystem.Instance.CreateBullet(bulletSpawn);
+            Vector2 speedFinal = new Vector2(speedBulletX,0f);
+            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal);
         }
     }
 
