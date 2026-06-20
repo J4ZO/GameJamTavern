@@ -1,22 +1,18 @@
 using System;
-using System.Collections;
+
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Transform bulletSpawn;
     private Enemy _enemy;
     
     [Header("Variables")]
     [SerializeField] private float speedEnemy;
     private Vector2 _speedDirection;
-    [SerializeField] private float bulletDelay = 2f ;
-    
-    [SerializeField] private float speedBulletX = -20f;
     
     
-    void Start()
+    void Awake()
     {
         _enemy = GetComponent<Enemy>();
         
@@ -24,13 +20,12 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
-        
-        StartCoroutine(BulletLoop());
+        _enemy.ShootEnemy();
     }
 
     private void OnDisable()
     {
-        StopCoroutine(BulletLoop());
+        _enemy.StopShootEnemy();
     }
 
 
@@ -44,16 +39,5 @@ public class EnemyController : MonoBehaviour
         _enemy.MoveEnemy(_speedDirection);
             
     }
-
-    IEnumerator BulletLoop()
-    {
-        yield return new WaitForEndOfFrame();
-        Debug.Log("Shooting exist: " + (ShootingSystem.Instance != null));
-        while (true)
-        {
-            Vector2 speedFinal = new Vector2(speedBulletX,0f);
-            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal);
-            yield return new WaitForSeconds(bulletDelay);
-        }
-    }
+    
 }

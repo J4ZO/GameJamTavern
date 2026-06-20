@@ -18,7 +18,7 @@ public class BulletController : MonoBehaviour
         if (other.GetComponent<IDamageable>() != null)
         {
             gameObject.SetActive(false);
-            entity.TakeDamage();
+            entity.TakeDamage(2);
         }
     }
 }

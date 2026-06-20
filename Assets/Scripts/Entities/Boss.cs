@@ -6,7 +6,7 @@ public class Boss : MonoBehaviour, IDamageable
     private Rigidbody2D _rb;
     
     [SerializeField] private float health = 1000f;
-    [SerializeField] private float damageReceived = 2f;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +19,7 @@ public class Boss : MonoBehaviour, IDamageable
         
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damageReceived)
     {
         health -= damageReceived;
 

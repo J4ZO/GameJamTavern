@@ -5,7 +5,6 @@ public class Obstacles : MonoBehaviour, IDamageable
     public bool IsDead { get; set; }
     
     [SerializeField] private float health = 2f;
-    [SerializeField] private float damageReceived = 2f;
     
     private Rigidbody2D _rb;
     
@@ -19,7 +18,7 @@ public class Obstacles : MonoBehaviour, IDamageable
         _rb.MovePosition(_rb.position + speedDirection * Time.fixedDeltaTime);
     }
    
-    public void TakeDamage()
+    public void TakeDamage(int damageReceived)
     {
         health -= damageReceived;
 

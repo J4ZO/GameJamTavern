@@ -175,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 440711459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.79, z: 0}
+  m_LocalPosition: {x: 0, y: 1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 1215954001}
   m_Layer: 0
   m_Name: PlayerTest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -859,6 +859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f238f4960330994ea0024969bf43a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  health: 0
+  maxHealth: 100
 --- !u!60 &1215954003
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1017,10 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5e0c7e309b4ef42ab869c76701c2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  bulletSpawn: {fileID: 440711460}
   speedEnemy: 5
-  bulletDelay: 2
-  speedBulletX: -20
 --- !u!114 &1412781144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,8 +1032,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea00605d4025944b81da0d8595ec10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  bulletSpawn: {fileID: 440711460}
   health: 6
-  damageReceived: 2
+  bulletDelay: 0.8
+  speedBulletX: -20
 --- !u!60 &1412781145
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1342,7 +1343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   health: 600
-  damageReceived: 2
 --- !u!1 &1458523846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1512,7 @@ Transform:
   m_GameObject: {fileID: 1529536057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.06, y: 6.5, z: 0}
+  m_LocalPosition: {x: 14.6, y: 0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1531,7 +1531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacles
   health: 2
-  damageReceived: 2
 --- !u!114 &1529536061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1602,7 +1601,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

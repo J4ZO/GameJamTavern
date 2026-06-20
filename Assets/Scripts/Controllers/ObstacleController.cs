@@ -13,14 +13,20 @@ public class ObstacleController : MonoBehaviour
         _speedDirection = new Vector2(-speedObstacle, 0f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 
     private void FixedUpdate()
     {
         _obstacle.MoveObstacle(_speedDirection);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var entity = other.GetComponent<IDamageable>();
+        if (other.CompareTag("Player") && entity != null)
+        {
+            gameObject.SetActive(false);
+            entity.TakeDamage(1);
+        }
     }
 }
