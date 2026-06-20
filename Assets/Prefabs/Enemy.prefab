@@ -110,8 +110,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   bulletSpawn: {fileID: 6812030767216726464}
   health: 6
+  maxHealth: 6
   bulletDelay: 0.8
-  speedBulletX: -20
+  speedBulletX: 20
+  speedEnemy: 5
 --- !u!114 &2667174811113083947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5e0c7e309b4ef42ab869c76701c2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  speedEnemy: 5
 --- !u!50 &5240632850938184647
 Rigidbody2D:
   serializedVersion: 5

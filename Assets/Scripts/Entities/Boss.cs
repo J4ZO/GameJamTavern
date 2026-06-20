@@ -1,25 +1,35 @@
 using UnityEngine;
 
-public class Boss : MonoBehaviour, IDamageable
+public class Boss : MonoBehaviour, IDamageable, IHealth
 {
     public bool IsDead { get; set; }
+    public void SpeedShoot(float speedShoot) { }
     private Rigidbody2D _rb;
     
-    [SerializeField] private float health = 1000f;
+    [SerializeField] private float health;
+    [SerializeField] private float maxHealth = 600f;
+    [SerializeField] private float speedBoss;
+    private Vector2 _speedDirection;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Initial Values")] 
+    private float _initialSpeedBoss;
+    
+    
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        health =  maxHealth;
+        _initialSpeedBoss =  speedBoss;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Health
+    public void Heal(float hp)
     {
-        
+        health += hp;
+        if(health > maxHealth ) health = maxHealth;
     }
 
-    public void TakeDamage(int damageReceived)
+    public void TakeDamage(float damageReceived)
     {
         health -= damageReceived;
 
@@ -28,10 +38,33 @@ public class Boss : MonoBehaviour, IDamageable
             gameObject.SetActive(false);
         }
     }
-    
-    public void MoveBoss(Vector2 speedDirection)
+
+    public void Kill()
     {
-        _rb.MovePosition(_rb.position + speedDirection * Time.fixedDeltaTime);
+        IsDead = true;
+    }
+
+    // Movement
+    public void SetSpeedDirection()
+    {
+       _speedDirection = new Vector2(-speedBoss, 0f);
+    }
+    
+    
+    public void MoveBoss()
+    {
+        _rb.MovePosition(_rb.position + _speedDirection * Time.fixedDeltaTime);
+    }
+    
+    public void SpeedMovement(float speedMovement)
+    {
+        speedBoss = speedMovement;
+    }
+    
+    // Reset Values
+    public void ResetValues()
+    {
+        speedBoss = _initialSpeedBoss;
     }
     
 }

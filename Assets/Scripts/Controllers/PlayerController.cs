@@ -6,13 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Player _player;
     
-    [Header("References")]
-    [SerializeField] private Transform bulletSpawn;
-    
-    [Header("Variables")]
-    [SerializeField] float moveSpeed;
-    [SerializeField] private float speedBulletX = 30f;
-
+        
     [Header("Actions")] 
     [SerializeField] private InputActionReference  moveAction;
     [SerializeField] private InputActionReference  shootAction;
@@ -29,8 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         if (shootAction.action.WasPressedThisFrame())
         {
-            Vector2 speedFinal = new Vector2(speedBulletX,0f);
-            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal,"Enemy");
+            _player.Shoot();
         }
     }
 
@@ -38,6 +31,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 direction = moveAction.action.ReadValue<Vector2>();
-        _player.Move(direction, moveSpeed );    
+        _player.Move(direction);    
     }
 }

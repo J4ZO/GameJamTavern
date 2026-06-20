@@ -7,9 +7,7 @@ public class EnemyController : MonoBehaviour
     [Header("References")]
     private Enemy _enemy;
     
-    [Header("Variables")]
-    [SerializeField] private float speedEnemy;
-    private Vector2 _speedDirection;
+    
     
     
     void Awake()
@@ -31,12 +29,12 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        _speedDirection = new Vector2(-speedEnemy, 0f);
+        _enemy.SetMovement();
     }
 
     private void FixedUpdate()
     {
-        _enemy.MoveEnemy(_speedDirection);
+        _enemy.MoveEnemy();
             
     }
     

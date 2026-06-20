@@ -3,33 +3,55 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-
-    public bool IsDead { get; set; }
-    
     [Header("References")]
     [SerializeField] private Transform bulletSpawn;
     
     [Header("Variables")]
-    [SerializeField] private float health = 6f;
+    [SerializeField] private float health;
+    [SerializeField] private float maxHealth = 6f;
     [SerializeField] private float bulletDelay = 2f ;
-    [SerializeField] private float speedBulletX = -20f;
-    
-    
+    [SerializeField] private float speedBulletX = 20f;
+    [SerializeField] private float speedEnemy = 5f;
+    private Vector2 _speedDirection;
     private Rigidbody2D _rb;
+
+    [Header("Initial Values")] 
+    private float _initialSpeedEnemy;
+    private float _initialSpeedBullet;
     
     
     void Start()
     { 
         _rb = GetComponent<Rigidbody2D>();   
+        health =  maxHealth;
+
+        _initialSpeedEnemy = speedEnemy;
+        _initialSpeedBullet =  speedBulletX;
     }
+    
+    // Movement
+
+    public void SetMovement()
+    {
+        _speedDirection = new Vector2(-speedEnemy, 0f);
+    }
+
+    public void MoveEnemy()
+    {
+        _rb.MovePosition(_rb.position + _speedDirection * Time.fixedDeltaTime);
+    }
+    
+    public void SpeedMovement(float speedMovement)
+    {
+        speedEnemy =  speedMovement;
+    }
+    
+    
+    
+    // Health
     
 
-    public void MoveEnemy(Vector2 speedDirection)
-    {
-        _rb.MovePosition(_rb.position + speedDirection * Time.fixedDeltaTime);
-    }
-    
-    public void TakeDamage(int damageReceived)
+    public void TakeDamage(float damageReceived)
     {
         health -= damageReceived;
 
@@ -38,7 +60,15 @@ public class Enemy : MonoBehaviour, IDamageable
             gameObject.SetActive(false);
         }
     }
-
+    
+    
+    
+    // Shoot
+    public void SpeedShoot(float speedShoot)
+    {
+        speedBulletX = -speedShoot;
+    }
+   
     public void ShootEnemy()
     {
         StartCoroutine(BulletLoop());
@@ -55,10 +85,18 @@ public class Enemy : MonoBehaviour, IDamageable
         Debug.Log("Shooting exist: " + (ShootingSystem.Instance != null));
         while (true)
         {
-            Vector2 speedFinal = new Vector2(speedBulletX,0f);
+            Vector2 speedFinal = new Vector2(-speedBulletX,0f);
             ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal, "Player");
             yield return new WaitForSeconds(bulletDelay);
         }
+    }
+    
+    
+    // Reset Values
+    public void ResetValues()
+    {
+        speedEnemy = _initialSpeedEnemy;
+        speedBulletX = _initialSpeedBullet;
     }
    
 }

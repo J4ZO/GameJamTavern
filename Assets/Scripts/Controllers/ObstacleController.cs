@@ -4,20 +4,21 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour
 {
     private Obstacles _obstacle;
-    [SerializeField] private float speedObstacle;
-    private Vector2 _speedDirection;
     
     void Start()
     {
         _obstacle = GetComponent<Obstacles>();
-        _speedDirection = new Vector2(-speedObstacle, 0f);
+        
     }
 
- 
+    private void Update()
+    {
+        _obstacle.SetSpeedDirection();
+    }
 
     private void FixedUpdate()
     {
-        _obstacle.MoveObstacle(_speedDirection);
+        _obstacle.MoveObstacle();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
