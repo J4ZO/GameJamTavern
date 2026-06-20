@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         if (shootAction.action.WasPressedThisFrame())
         {
             Vector2 speedFinal = new Vector2(speedBulletX,0f);
-            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal);
+            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal,"Enemy");
         }
     }
 

@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour, IDamageable
     
     
     private Rigidbody2D _rb;
-
+    
     
     void Start()
     { 
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour, IDamageable
         while (true)
         {
             Vector2 speedFinal = new Vector2(speedBulletX,0f);
-            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal);
+            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal, "Player");
             yield return new WaitForSeconds(bulletDelay);
         }
     }

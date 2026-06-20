@@ -40,4 +40,18 @@ public class EnemyController : MonoBehaviour
             
     }
     
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var entity = other.GetComponent<IDamageable>();
+        if (other.CompareTag("Player") && entity != null)
+        {
+            gameObject.SetActive(false);
+            entity.TakeDamage(1);
+        } else if (other.CompareTag("Wall"))
+        {
+            Debug.Log("Touched wall");
+            Destroy(gameObject);
+        }
+    }
+    
 }

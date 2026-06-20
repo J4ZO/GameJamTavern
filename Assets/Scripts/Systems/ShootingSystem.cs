@@ -28,21 +28,20 @@ public class ShootingSystem : MonoBehaviour
         if(!_bullets.Contains(bullet))
         {
             _bullets.Add(bullet);
-            Debug.Log("Bullet Added.  Bullet Count: " + _bullets.Count);
         }
     }
 
     
 
 
-    public void CreateBullet(Transform bulletPosition,  Vector2 speed)
+    public void CreateBullet(Transform bulletPosition,  Vector2 speed, String tagTarget)
     {
         if (_bullets.TrueForAll(bullet => bullet.gameObject.activeSelf) || _bullets.Count == 0)
         {
             Debug.Log("Bullet Full or Created first time");
             GameObject newBullet = Instantiate(bulletPrefab, bulletPosition.position, Quaternion.identity);
             Bullet bullet = newBullet.GetComponent<Bullet>();
-            
+            bullet.SetTarget(tagTarget);
             bullet.SetSpeedDirection(speed);
         }
         else
@@ -53,6 +52,8 @@ public class ShootingSystem : MonoBehaviour
                 if(!bullet.gameObject.activeSelf)
                 {
                     bullet.transform.position = bulletPosition.position;
+                    bullet.SetTarget(tagTarget);
+                    bullet.SetSpeedDirection(speed);
                     bullet.gameObject.SetActive(true);
                     break;
                 }
