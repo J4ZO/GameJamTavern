@@ -82,6 +82,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
         if (health <= 0)
         {
             gameObject.SetActive(false);
+            Kill(true);
         }
     }
     

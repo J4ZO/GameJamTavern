@@ -56,6 +56,7 @@ public class Boss : MonoBehaviour, IDamageable, IHealth
         if (health <= 0f)
         {
             gameObject.SetActive(false);
+            Kill(true);
         }
     }
 
