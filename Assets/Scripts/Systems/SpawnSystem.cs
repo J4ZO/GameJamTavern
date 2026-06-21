@@ -13,7 +13,7 @@ public class SpawnSystem : MonoBehaviour
     
     
     [Header("Variables")]
-    [SerializeField] private float spawnRate;
+    public float spawnRate;
 
 
     public void Spawn()

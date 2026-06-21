@@ -933,9 +933,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   bulletSpawn: {fileID: 1071147676}
   health: 0
-  maxHealth: 100
+  maxHealth: 60
   speedBulletX: 30
   moveSpeed: 10
+  canShoot: 1
 --- !u!60 &1215954003
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1261,7 +1262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   health: 600
   maxHealth: 600
-  speedBoss: 0
+  speedBoss: 0.1
 --- !u!1 &1458523846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,35 +1384,32 @@ MonoBehaviour:
   delayCase: 7
   cases:
   - name: speedMovementChange
+    script: {fileID: 11400000, guid: e83c3a3e9aa09344ba64f9eebea06c71, type: 2}
     value: 20
-    isUnique: 0
   - name: speedBulletChange
+    script: {fileID: 11400000, guid: 85c4531c2eb891e45917e4df37089b09, type: 2}
     value: 17
-    isUnique: 0
   - name: giveHealth
-    value: 13
-    isUnique: 0
+    script: {fileID: 11400000, guid: 34677fc650a2cb148a2cc22657dac18b, type: 2}
+    value: 15
   - name: reduceHealth
-    value: 13
-    isUnique: 0
+    script: {fileID: 11400000, guid: b33e802103c55b24792fb49d7417f8a5, type: 2}
+    value: 15
   - name: cantShoot
-    value: 12
-    isUnique: 0
+    script: {fileID: 11400000, guid: d0a696ca50fe8af4a92f67c642b7a99a, type: 2}
+    value: 14
   - name: freezeUnit
-    value: 10
-    isUnique: 0
-  - name: indestructible
-    value: 8
-    isUnique: 0
+    script: {fileID: 11400000, guid: e502b64299de38c4eae44ac51eb73a65, type: 2}
+    value: 12
   - name: giveMaxHealth
+    script: {fileID: 11400000, guid: eb7b6cfa6a63fb84ca0be962722f90ee, type: 2}
     value: 5.5
-    isUnique: 0
   - name: deadPlayer
+    script: {fileID: 11400000, guid: ca28d0239c4420d4bbb7a02a9ea0ee7c, type: 2}
     value: 1
-    isUnique: 1
   - name: deadEnemy
+    script: {fileID: 11400000, guid: 16e776f8c7e4725469f39c5e6744740c, type: 2}
     value: 0.5
-    isUnique: 1
 --- !u!114 &1717721717
 MonoBehaviour:
   m_ObjectHideFlags: 0

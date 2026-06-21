@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
     
     [Header("Variables")]
     [SerializeField] private float health;
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float maxHealth = 60f;
     [SerializeField] private float speedBulletX = 30f;
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private bool canShoot;
@@ -113,6 +113,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
     {
         moveSpeed = _initialSpeedPlayer;
         speedBulletX = _initialSpeedBullet;
+        canShoot = true;
     }
 
     

@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour, IDamageable, IHealth
     
     [SerializeField] private float health;
     [SerializeField] private float maxHealth = 600f;
-    [SerializeField] private float speedBoss;
+    [SerializeField] private float speedBoss = 0.2f;
     private Vector2 _speedDirection;
     
     [Header("Initial Values")] 
