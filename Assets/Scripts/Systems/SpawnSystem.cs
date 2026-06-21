@@ -14,6 +14,12 @@ public class SpawnSystem : MonoBehaviour
     
     [Header("Variables")]
     public float spawnRate;
+    [SerializeField] private float timeDelay;
+
+    private void Update()
+    {
+        if(spawnRate > 0.5f) spawnRate -= timeDelay * Time.deltaTime;
+    }
 
 
     public void Spawn()

@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Shoot
     public void SpeedShoot(float speedShoot)
     {
-        speedBulletX = -speedShoot;
+        speedBulletX = speedShoot;
     }
    
     public void ShootEnemy()

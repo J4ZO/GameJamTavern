@@ -1368,7 +1368,8 @@ MonoBehaviour:
   prefabs:
   - {fileID: 1693644576296131456, guid: 317933367077c904bb943e30b8fa0451, type: 3}
   - {fileID: 3562673746790795029, guid: 92ce5a176da529240a29a82a3299f263, type: 3}
-  spawnRate: 3
+  spawnRate: 2
+  timeDelay: 0.03
 --- !u!114 &1496986471
 MonoBehaviour:
   m_ObjectHideFlags: 0
