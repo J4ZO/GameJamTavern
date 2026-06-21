@@ -47,7 +47,6 @@ public class EnemyController : MonoBehaviour
             entity.TakeDamage(1);
         } else if (other.CompareTag("Wall"))
         {
-            Debug.Log("Touched wall");
             Destroy(gameObject);
         }
     }

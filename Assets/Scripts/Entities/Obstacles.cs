@@ -20,6 +20,20 @@ public class Obstacles : MonoBehaviour, IDamageable
         _rb = GetComponent<Rigidbody2D>();
         _initialSpeedObstacle = speedObstacle;
     }
+    
+    // Subscribe and Unsubscribe Events
+    private void OnEnable()
+    {
+        GameEvents.OnObstacleSpeedMovementModified += SpeedMovement;
+        GameEvents.OnObstacleResetValues += ResetValues;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnObstacleSpeedMovementModified -= SpeedMovement;
+        GameEvents.OnObstacleResetValues -= ResetValues;
+    }
+    
 
     public void SetSpeedDirection()
     {

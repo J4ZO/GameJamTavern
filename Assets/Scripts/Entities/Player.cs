@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float speedBulletX = 30f;
     [SerializeField] private float moveSpeed = 10;
+    [SerializeField] private bool canShoot;
     
     [Header("Initial Values")] 
     private float _initialSpeedPlayer;
@@ -25,6 +26,29 @@ public class Player : MonoBehaviour, IDamageable, IHealth
         health = maxHealth;
         _initialSpeedPlayer = moveSpeed;
         _initialSpeedBullet =  speedBulletX;
+    }
+    
+    // Subscribe and Unsubscribe Events
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerSpeedMovementModified += SpeedMovement;
+        GameEvents.OnPlayerSpeedBulletModified += SpeedShoot;
+        GameEvents.OnPlayerWeaponToggled += ToggleWeapon;
+        GameEvents.OnPlayerGiveHeal += Heal;
+        GameEvents.OnPlayerTakeDamage += TakeDamage;
+        GameEvents.OnPlayerKilled += Kill;
+        GameEvents.OnPlayerResetValues += ResetValues;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerSpeedMovementModified -= SpeedMovement;
+        GameEvents.OnPlayerSpeedBulletModified -= SpeedShoot;
+        GameEvents.OnPlayerWeaponToggled -= ToggleWeapon;
+        GameEvents.OnPlayerGiveHeal -= Heal;
+        GameEvents.OnPlayerTakeDamage -= TakeDamage;
+        GameEvents.OnPlayerKilled -= Kill;
+        GameEvents.OnPlayerResetValues -= ResetValues;
     }
     
     // Movement
@@ -45,9 +69,9 @@ public class Player : MonoBehaviour, IDamageable, IHealth
         if(health > maxHealth ) health = maxHealth;
     }
     
-    public void Kill()
+    public void Kill(bool value)
     {
-        IsDead = true;
+        IsDead = value;
     }
     
 
@@ -71,8 +95,17 @@ public class Player : MonoBehaviour, IDamageable, IHealth
 
     public void Shoot()
     {
-        Vector2 speedFinal = new Vector2(speedBulletX,0f);
-        ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal,"Enemy");
+        if (canShoot)
+        {
+            Vector2 speedFinal = new Vector2(speedBulletX,0f);
+            ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal,"Enemy");
+        }  
+    }
+
+
+    private void ToggleWeapon(bool value)
+    {
+        canShoot = value;
     }
     
     // Reset Values

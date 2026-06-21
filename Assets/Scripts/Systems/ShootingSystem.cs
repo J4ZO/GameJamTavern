@@ -38,7 +38,6 @@ public class ShootingSystem : MonoBehaviour
     {
         if (_bullets.TrueForAll(bullet => bullet.gameObject.activeSelf) || _bullets.Count == 0)
         {
-            Debug.Log("Bullet Full or Created first time");
             GameObject newBullet = Instantiate(bulletPrefab, bulletPosition.position, Quaternion.identity);
             Bullet bullet = newBullet.GetComponent<Bullet>();
             bullet.SetTarget(tagTarget);
@@ -46,7 +45,6 @@ public class ShootingSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Bullet pool");
             foreach (var bullet in _bullets)
             {
                 if(!bullet.gameObject.activeSelf)

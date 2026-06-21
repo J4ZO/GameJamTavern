@@ -21,6 +21,26 @@ public class Boss : MonoBehaviour, IDamageable, IHealth
         health =  maxHealth;
         _initialSpeedBoss =  speedBoss;
     }
+    
+    // Subscribe and Unsubscribe Events
+    private void OnEnable()
+    {
+        GameEvents.OnBossSpeedMovementModified += SpeedMovement;
+        GameEvents.OnBossGiveHeal += Heal;
+        GameEvents.OnBossTakeDamage += TakeDamage;
+        GameEvents.OnBossKilled += Kill;
+        GameEvents.OnBossResetValues += ResetValues;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnBossSpeedMovementModified -= SpeedMovement;
+        GameEvents.OnBossGiveHeal -= Heal;
+        GameEvents.OnBossTakeDamage -= TakeDamage;
+        GameEvents.OnBossKilled -= Kill;
+        GameEvents.OnBossResetValues -= ResetValues;
+    }
+    
 
     // Health
     public void Heal(float hp)
@@ -39,9 +59,9 @@ public class Boss : MonoBehaviour, IDamageable, IHealth
         }
     }
 
-    public void Kill()
+    public void Kill(bool value)
     {
-        IsDead = true;
+       IsDead = value;
     }
 
     // Movement

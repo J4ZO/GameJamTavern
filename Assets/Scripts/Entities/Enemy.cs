@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -29,6 +30,22 @@ public class Enemy : MonoBehaviour, IDamageable
         _initialSpeedBullet =  speedBulletX;
     }
     
+    // Subscribe and Unsubscribe Events
+    private void OnEnable()
+    {
+        GameEvents.OnEnemySpeedMovementModified += SpeedMovement;
+        GameEvents.OnEnemySpeedBulletModified += SpeedShoot;
+        GameEvents.OnEnemyResetValues += ResetValues;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnEnemySpeedMovementModified -= SpeedMovement;
+        GameEvents.OnEnemySpeedBulletModified -= SpeedShoot;
+        GameEvents.OnEnemyResetValues -= ResetValues;
+    }
+
+
     // Movement
 
     public void SetMovement()
@@ -71,7 +88,9 @@ public class Enemy : MonoBehaviour, IDamageable
    
     public void ShootEnemy()
     {
+       
         StartCoroutine(BulletLoop());
+        
     }
 
     public void StopShootEnemy()
@@ -82,7 +101,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private IEnumerator BulletLoop()
     {
         yield return new WaitForEndOfFrame();
-        Debug.Log("Shooting exist: " + (ShootingSystem.Instance != null));
         while (true)
         {
             Vector2 speedFinal = new Vector2(-speedBulletX,0f);
@@ -90,6 +108,7 @@ public class Enemy : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(bulletDelay);
         }
     }
+    
     
     
     // Reset Values

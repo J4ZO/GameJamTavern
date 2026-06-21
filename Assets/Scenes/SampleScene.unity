@@ -1310,6 +1310,7 @@ GameObject:
   - component: {fileID: 1496986469}
   - component: {fileID: 1496986468}
   - component: {fileID: 1496986470}
+  - component: {fileID: 1496986471}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1367,6 +1368,50 @@ MonoBehaviour:
   - {fileID: 1693644576296131456, guid: 317933367077c904bb943e30b8fa0451, type: 3}
   - {fileID: 3562673746790795029, guid: 92ce5a176da529240a29a82a3299f263, type: 3}
   spawnRate: 3
+--- !u!114 &1496986471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496986467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a63c0a3ed5c88459afc42343da79a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RouletteSystem
+  delayCase: 7
+  cases:
+  - name: speedMovementChange
+    value: 20
+    isUnique: 0
+  - name: speedBulletChange
+    value: 17
+    isUnique: 0
+  - name: giveHealth
+    value: 13
+    isUnique: 0
+  - name: reduceHealth
+    value: 13
+    isUnique: 0
+  - name: cantShoot
+    value: 12
+    isUnique: 0
+  - name: freezeUnit
+    value: 10
+    isUnique: 0
+  - name: indestructible
+    value: 8
+    isUnique: 0
+  - name: giveMaxHealth
+    value: 5.5
+    isUnique: 0
+  - name: deadPlayer
+    value: 1
+    isUnique: 1
+  - name: deadEnemy
+    value: 0.5
+    isUnique: 1
 --- !u!114 &1717721717
 MonoBehaviour:
   m_ObjectHideFlags: 0
