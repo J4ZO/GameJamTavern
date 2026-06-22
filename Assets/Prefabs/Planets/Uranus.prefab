@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3146104735284867694}
   - component: {fileID: 8797532721765409629}
   - component: {fileID: 5680278109727124014}
+  - component: {fileID: 4942151306998092002}
   m_Layer: 0
   m_Name: Uranus
   m_TagString: Enemy
@@ -182,5 +183,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8daa7cff724ecb438b6abe8963531c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacles
-  health: 2
+  health: 20
   speedObstacle: 3
+--- !u!95 &4942151306998092002
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942763023906045275}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2c0c65649a9172408c9813a82b5492e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

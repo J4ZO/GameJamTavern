@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damageReceived)
     {
+        _animator.SetTrigger("Hit");
         health -= damageReceived;
 
         if (health <= 0f)

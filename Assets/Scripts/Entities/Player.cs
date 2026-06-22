@@ -92,6 +92,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
 
     public void TakeDamage(float damageAmount)
     {
+        _animator.SetTrigger("Hit");
         health -= damageAmount;
 
         if (health <= 0)
@@ -101,7 +102,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
         }
     }
     
-    public void AnimateDeath()
+    private void AnimateDeath()
     {
         StartCoroutine(WaitToDestroy());
     }

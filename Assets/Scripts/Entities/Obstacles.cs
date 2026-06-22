@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Obstacles : MonoBehaviour, IDamageable
@@ -5,10 +6,13 @@ public class Obstacles : MonoBehaviour, IDamageable
     public void SpeedShoot(float speedShoot) { }
     
     [Header("Variables")]
-    [SerializeField] private float health = 2f;
+    [SerializeField] private float health = 20f;
     [SerializeField] private float speedObstacle = 3f;
     private Vector2 _speedDirection;
+    
+    [Header("References")]
     private Rigidbody2D _rb;
+    private Animator _animator;
     
     [Header("Initial Values")] 
     private float _initialSpeedObstacle;
@@ -17,6 +21,7 @@ public class Obstacles : MonoBehaviour, IDamageable
     
     void Start()
     {
+        _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _initialSpeedObstacle = speedObstacle;
     }
@@ -54,11 +59,24 @@ public class Obstacles : MonoBehaviour, IDamageable
     public void TakeDamage(float damageReceived)
     {
         health -= damageReceived;
-
+        _animator.SetTrigger("Hit");
         if (health <= 0f)
         {
-            gameObject.SetActive(false);
+            AnimateDeath();
         }
+    }
+    
+    public void AnimateDeath()
+    {
+        StartCoroutine(WaitToDestroy());
+    }
+
+    IEnumerator WaitToDestroy()
+    {
+        speedObstacle = 0f;
+        _animator.SetBool("IsDead", true);
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
     
     // Reset Values

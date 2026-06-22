@@ -26,8 +26,8 @@ public class ObstacleController : MonoBehaviour
         var entity = other.GetComponent<IDamageable>();
         if (other.CompareTag("Player") && entity != null)
         {
-            entity.TakeDamage(1);
-            Destroy(gameObject);
+            entity.TakeDamage(8f);
+            _obstacle.AnimateDeath();
         } else if (other.CompareTag("Wall"))
         {
             Debug.Log("Touched wall");

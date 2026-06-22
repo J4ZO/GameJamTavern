@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5668306199619530942}
   - component: {fileID: 2328298185581952251}
   - component: {fileID: 3032714379305761492}
+  - component: {fileID: -3102087266619936293}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Enemy
@@ -182,5 +183,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8daa7cff724ecb438b6abe8963531c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacles
-  health: 2
+  health: 20
   speedObstacle: 3
+--- !u!95 &-3102087266619936293
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7315770990195743472}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2c0c65649a9172408c9813a82b5492e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
