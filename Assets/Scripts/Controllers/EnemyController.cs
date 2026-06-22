@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
         var entity = other.GetComponent<IDamageable>();
         if (other.CompareTag("Player") && entity != null)
         {
-            gameObject.SetActive(false);
+            _enemy.AnimateDeath();
             entity.TakeDamage(1);
         } else if (other.CompareTag("Wall"))
         {

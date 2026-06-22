@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("References")]
     [SerializeField] private Transform bulletSpawn;
+
+    [SerializeField] private GameObject turbo;
+    private Rigidbody2D _rb;
+    private Animator _animator;
     
     [Header("Variables")]
     [SerializeField] private float health;
@@ -14,7 +18,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float speedBulletX = 20f;
     [SerializeField] private float speedEnemy = 5f;
     private Vector2 _speedDirection;
-    private Rigidbody2D _rb;
+   
 
     [Header("Initial Values")] 
     private float _initialSpeedEnemy;
@@ -23,6 +27,7 @@ public class Enemy : MonoBehaviour, IDamageable
     
     void Start()
     { 
+        _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();   
         health =  maxHealth;
 
@@ -74,10 +79,23 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (health <= 0f)
         {
-            gameObject.SetActive(false);
+            AnimateDeath();
         }
     }
-    
+
+    public void AnimateDeath()
+    {
+        StartCoroutine(WaitToDestroy());
+    }
+
+    IEnumerator WaitToDestroy()
+    {
+        turbo.SetActive(false);
+        speedEnemy = 0f;
+        _animator.SetBool("IsDead", true);
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
+    }
     
     
     // Shoot

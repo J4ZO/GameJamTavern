@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 708336282209623796}
   - component: {fileID: 7908683621263756480}
   - component: {fileID: 5997074315079319677}
+  - component: {fileID: 1796837573713765910}
   m_Layer: 0
   m_Name: Enemy (3)
   m_TagString: Enemy
@@ -287,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   bulletSpawn: {fileID: 6215250302507883621}
+  turbo: {fileID: 5191654218852141949}
   health: 6
   maxHealth: 6
   bulletDelay: 0.8
@@ -381,3 +383,25 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 1
+--- !u!95 &1796837573713765910
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6762959563437995114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2c0c65649a9172408c9813a82b5492e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

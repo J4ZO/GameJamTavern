@@ -1,13 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable, IHealth
 {
     public bool IsDead { get; set; }
-    private Rigidbody2D rb;
+    
 
     [Header("References")]
     [SerializeField] private Transform bulletSpawn;
-    
+    [SerializeField] private GameObject turbo;
+    private Animator _animator;
+    private Rigidbody2D rb;
     
     [Header("Variables")]
     [SerializeField] private float health;
@@ -22,6 +25,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
     
     void Start()
     {
+        _animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
         _initialSpeedPlayer = moveSpeed;
@@ -92,10 +96,26 @@ public class Player : MonoBehaviour, IDamageable, IHealth
 
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            AnimateDeath();
             Kill(true);
         }
     }
+    
+    public void AnimateDeath()
+    {
+        StartCoroutine(WaitToDestroy());
+    }
+
+    IEnumerator WaitToDestroy()
+    {
+        turbo.SetActive(false);
+        moveSpeed = 0f;
+        _animator.SetBool("IsDead", true);
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
+    }
+    
+    
     
     
     
