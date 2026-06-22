@@ -71,6 +71,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
     
     public void Kill(bool value)
     {
+        health = 0f;
         IsDead = value;
     }
     

@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject winUI;
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private Image bossHealthBar;
+    [SerializeField] private Image playerHealthBar;
     
     
     [Header("Actions")]
@@ -27,16 +31,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (boss.IsDead)
+        if (boss.IsDead && !player.IsDead)
         {
-            winUI.SetActive(true);
-            Time.timeScale = 0;
+            bossHealthBar.fillAmount = 0f;
+            StartCoroutine(WaitToWin());
         }
 
         if (player.IsDead)
         {
-            gameOverUI.SetActive(true);
-            Time.timeScale = 0;
+            playerHealthBar.fillAmount = 0f;
+            StartCoroutine(WaitToLose());
         }
 
         if (pauseAction.action.WasPressedThisFrame())
@@ -60,5 +64,22 @@ public class GameManager : MonoBehaviour
     public void SceneChange(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+    }
+
+
+    private IEnumerator WaitToWin()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(1f);
+        winUI.SetActive(true);
+        
+    }
+
+    
+    private IEnumerator WaitToLose()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(1f);
+        gameOverUI.SetActive(true);
     }
 }

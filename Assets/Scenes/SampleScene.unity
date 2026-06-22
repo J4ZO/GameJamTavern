@@ -3396,6 +3396,8 @@ MonoBehaviour:
   gameOverUI: {fileID: 1989633819}
   winUI: {fileID: 69043930}
   pauseUI: {fileID: 1400470158}
+  bossHealthBar: {fileID: 1225904086}
+  playerHealthBar: {fileID: 371811471}
   pauseAction: {fileID: 508826693}
 --- !u!4 &1381419070
 Transform:
