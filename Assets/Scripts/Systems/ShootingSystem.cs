@@ -38,7 +38,7 @@ public class ShootingSystem : MonoBehaviour
     {
         if (_bullets.TrueForAll(bullet => bullet.gameObject.activeSelf) || _bullets.Count == 0)
         {
-            GameObject newBullet = Instantiate(bulletPrefab, bulletPosition.position, Quaternion.identity);
+            GameObject newBullet = Instantiate(bulletPrefab, bulletPosition.position, bulletPrefab.transform.rotation);
             Bullet bullet = newBullet.GetComponent<Bullet>();
             bullet.SetTarget(tagTarget);
             bullet.SetSpeedDirection(speed);

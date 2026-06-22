@@ -9,7 +9,8 @@ public class SpawnSystem : MonoBehaviour
 {
     [Header("Lists")]
     [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] private List<GameObject> prefabs;
+    [SerializeField] private List<GameObject> prefabsEnemies;
+    [SerializeField] private List<GameObject> prefabsPlanets;
     
     
     [Header("Variables")]
@@ -49,16 +50,23 @@ public class SpawnSystem : MonoBehaviour
 
         if (value < 0.6f)
         {
-            Instantiate(prefabs[0], spawnPoints[SpawnRandom()].position,prefabs[0].transform.rotation);
+            Instantiate(SpawnPrefab(prefabsEnemies), spawnPoints[SpawnRandom()].position,SpawnPrefab(prefabsEnemies).transform.rotation);
         }
         else
         {
-            Instantiate(prefabs[1], spawnPoints[SpawnRandom()].position, prefabs[1].transform.rotation);
+            Instantiate(SpawnPrefab(prefabsPlanets), spawnPoints[SpawnRandom()].position, SpawnPrefab(prefabsPlanets).transform.rotation);
         }
     }
     
     private int SpawnRandom()
     {
         return Random.Range(0, spawnPoints.Count);
+    }
+
+    private GameObject SpawnPrefab(List<GameObject> prefabs)
+    {
+        int random = Random.Range(0, prefabs.Count);
+        
+        return prefabs[random];
     }
 }

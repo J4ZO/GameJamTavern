@@ -40,10 +40,11 @@ public class GameManager : MonoBehaviour
         if (player.IsDead)
         {
             playerHealthBar.fillAmount = 0f;
+            Debug.Log("Player is Dead");
             StartCoroutine(WaitToLose());
         }
 
-        if (pauseAction.action.WasPressedThisFrame())
+        if (pauseAction.action.WasPressedThisFrame() && !player.IsDead && !boss.IsDead)
         {
             PauseToggle();
         }
@@ -69,8 +70,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitToWin()
     {
-        Time.timeScale = 0;
         yield return new WaitForSeconds(1f);
+        Time.timeScale = 0;
         winUI.SetActive(true);
         
     }
@@ -78,8 +79,9 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator WaitToLose()
     {
-        Time.timeScale = 0;
         yield return new WaitForSeconds(1f);
+        Time.timeScale = 0;
+        Debug.Log("game over ui appeared");
         gameOverUI.SetActive(true);
     }
 }
