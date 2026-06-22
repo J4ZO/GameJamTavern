@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [Header("Actions")] 
     [SerializeField] private InputActionReference  moveAction;
     [SerializeField] private InputActionReference  shootAction;
+    
+    [Header("References")]
+    [SerializeField] private Image playerHealthBar;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +29,8 @@ public class PlayerController : MonoBehaviour
         {
             _player.Shoot();
         }
+        
+        playerHealthBar.fillAmount = _player.GetHealth() / _player.GetMaxHealth();
     }
 
 

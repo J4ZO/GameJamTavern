@@ -74,6 +74,16 @@ public class Player : MonoBehaviour, IDamageable, IHealth
         IsDead = value;
     }
     
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    
 
     public void TakeDamage(float damageAmount)
     {

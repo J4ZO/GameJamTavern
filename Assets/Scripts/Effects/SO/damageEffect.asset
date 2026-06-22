@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d1217fd9088d441bcf43adaa2af301, type: 3}
   m_Name: damageEffect
   m_EditorClassIdentifier: Assembly-CSharp::ReduceHealth
-  damagePlayer: 30
+  damagePlayer: 15
   damageBoss: 100

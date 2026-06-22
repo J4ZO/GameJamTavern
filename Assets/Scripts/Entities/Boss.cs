@@ -65,6 +65,16 @@ public class Boss : MonoBehaviour, IDamageable, IHealth
        IsDead = value;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+    
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    
     // Movement
     public void SetSpeedDirection()
     {
