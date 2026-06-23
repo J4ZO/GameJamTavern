@@ -40,9 +40,12 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(int clipIndex, float volume = 1f)
     {
-        _audioSource.PlayOneShot(audioMusic[clipIndex]);
+        _audioSource.Stop();
         _audioSource.volume = volume;
         _audioSource.loop = true;
+        _audioSource.clip =  audioMusic[clipIndex];
+        _audioSource.Play();
+        
     }
 
     public void StopMusic()
