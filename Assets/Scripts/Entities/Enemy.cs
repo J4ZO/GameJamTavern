@@ -122,6 +122,7 @@ public class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForEndOfFrame();
         while (true)
         {
+            AudioManager.Instance.PlayClip(3,0.5f);
             Vector2 speedFinal = new Vector2(-speedBulletX,0f);
             ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal, "Player");
             yield return new WaitForSeconds(bulletDelay);

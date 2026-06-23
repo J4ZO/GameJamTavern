@@ -130,6 +130,7 @@ public class Player : MonoBehaviour, IDamageable, IHealth
     {
         if (canShoot)
         {
+            AudioManager.Instance.PlayClip(3,0.5f);
             Vector2 speedFinal = new Vector2(speedBulletX,0f);
             ShootingSystem.Instance.CreateBullet(bulletSpawn,speedFinal,"Enemy");
         }  

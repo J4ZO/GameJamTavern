@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         spawnSystem.Spawn();
+        StartMusicBattle();
     }
 
     // Update is called once per frame
@@ -53,35 +54,49 @@ public class GameManager : MonoBehaviour
 
     private void PauseToggle()
     {
+        AudioManager.Instance.StopMusic();
         pauseUI.SetActive(!pauseUI.activeSelf);
+
+        AudioManager.Instance.PlayMusic(pauseUI.activeSelf ? 2 : 1, 0.8f);
         Time.timeScale = Mathf.Approximately(Time.timeScale, 1) ? 0 : 1;
     }
 
     public void RestartScene()
     {
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void SceneChange(int sceneIndex)
     {
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(sceneIndex);
     }
 
 
     private IEnumerator WaitToWin()
     {
+        AudioManager.Instance.StopMusic();
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0;
         winUI.SetActive(true);
-        
+        AudioManager.Instance.PlayMusic(0,0.8f);
     }
 
     
     private IEnumerator WaitToLose()
     {
+        AudioManager.Instance.StopMusic();
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0;
         Debug.Log("game over ui appeared");
         gameOverUI.SetActive(true);
+        AudioManager.Instance.PlayMusic(1,0.8f);
+    }
+
+    private void StartMusicBattle()
+    {
+        AudioManager.Instance.PlayClip(1);
+        AudioManager.Instance.PlayMusic(1,0.8f);
     }
 }

@@ -97,7 +97,8 @@ public class RouletteSystem : MonoBehaviour
         
         _currentEffect.Apply(value);
 
-
+        AudioManager.Instance.PlayClip(2);
+        
         StartCoroutine(RemoveEffect(_currentEffect));
     }
 
